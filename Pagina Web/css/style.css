@@ -1,5 +1,19 @@
-.container{
-    margin-top: 50px;
-
+body {
+    background-color: #f0f4f8; /* Color de fondo claro */
 }
-
+.card {
+    background-color: #ffffff; /* Fondo blanco */
+    border-radius: 10px; /* Bordes redondeados */
+    width: 22rem;
+}
+.btn-primary {
+    background-color: #4CAF50; /* Cambiamos el color del botón */
+    border: none;
+}
+.btn-primary:hover {
+    background-color: #45a049; /* Color del botón al pasar el cursor */
+}
+.form-control:focus {
+    border-color: #4CAF50;
+    box-shadow: none; /* Sin sombra al hacer foco */
+}
