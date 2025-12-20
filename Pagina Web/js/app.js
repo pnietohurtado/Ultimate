@@ -19,14 +19,7 @@ if(togglePassword){
         const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
         passwordInput.setAttribute('type', type);
         this.innerHTML = type === 'password' ? '👁️' : '🙈';
-        
-        /* Just a test on how to fetch a URL 
-        fetch(LOGIN_ENDPOINT, {method: "POST"})
-        .then(response => console.log(response))
-        .catch(error => console.error(error)); 
-        */
-
-        login(email.value, password.value) ; 
+      
     });
 }else{
     console.log('Data from the button ' + email); 
@@ -37,15 +30,21 @@ if(togglePassword){
 
 
 // Functions about the login with de AUTHORIZATION API (LOGIN PART)
-async function login(username, password){
+
+loginBtn.addEventListener('click', function(){ // The login button 
+    login(email.value, password.value) ; 
+}); 
+
+async function login(email, password){
     try{
         //console.log('Username => ' + username + " Password => " + password); 
 
         const credentials = {
-            username: username, 
+            email: email, 
             password: password
         };
         console.log('Credential sended to the server ' + credentials) ; 
+        console.log('API ENDPOINT ' + LOGIN_ENDPOINT); 
 
         const response = await fetch(`${LOGIN_ENDPOINT}`, { // Fetching the data to the API 
                 method: 'POST',
