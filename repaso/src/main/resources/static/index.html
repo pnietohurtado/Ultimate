@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Sistema de Usuarios</title>
+    <style>
+        /* ===== ESTILOS CSS ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .login-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 450px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .logo i {
+            font-size: 50px;
+            color: #667eea;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo h1 {
+            color: #333;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .input-group {
+            position: relative;
+            display: flex;
+            align-items: center;
+            border: 2px solid #e1e5e9;
+            border-radius: 12px;
+            padding: 0 15px;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+        .input-group:focus-within {
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .input-icon {
+            color: #667eea;
+            font-size: 18px;
+            margin-right: 10px;
+        }
+
+        .input-group input {
+            flex: 1;
+            padding: 18px 10px;
+            border: none;
+            background: transparent;
+            font-size: 16px;
+            color: #333;
+            outline: none;
+        }
+
+        .input-group input::placeholder {
+            color: #999;
+        }
+
+        .toggle-password {
+            background: none;
+            border: none;
+            color: #667eea;
+            cursor: pointer;
+            font-size: 18px;
+            padding: 5px;
+            transition: color 0.3s ease;
+        }
+
+        .toggle-password:hover {
+            color: #764ba2;
+        }
+
+        .or-divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .or-divider::before,
+        .or-divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #e1e5e9;
+        }
+
+        .or-divider span {
+            padding: 0 15px;
+            color: #666;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            color: #555;
+            font-size: 14px;
+            position: relative;
+        }
+
+        .checkbox-container input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .checkmark {
+            position: relative;
+            height: 20px;
+            width: 20px;
+            background-color: #f8f9fa;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox-container input:checked ~ .checkmark {
+            background-color: #667eea;
+            border-color: #667eea;
+        }
+
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+            left: 6px;
+            top: 2px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+        .checkbox-container input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        .forgot-password {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .forgot-password:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        .login-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 14px rgba(102, 126, 234, 0.3);
+        }
+
+        .login-btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-text {
+            transition: opacity 0.3s ease;
+        }
+
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .register-link {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+
+        .register-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .register-link a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        .role-info {
+            margin-top: 30px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .role-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            border: 2px solid #e1e5e9;
+        }
+
+        .role-card i {
+            font-size: 60px;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .role-card h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 22px;
+        }
+
+        .role-card p {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .permissions {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: left;
+        }
+
+        .permissions h4 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .permissions ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .permissions li {
+            color: #555;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .permissions li:last-child {
+            border-bottom: none;
+        }
+
+        .permissions li:before {
+            content: "✓";
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .continue-btn {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        .continue-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 14px rgba(76, 175, 80, 0.3);
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #ff4757;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: none;
+            align-items: center;
+            gap: 10px;
+            animation: slideIn 0.3s ease;
+            z-index: 1000;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .notification.success {
+            background: #2ed573;
+        }
+
+        .notification.warning {
+            background: #ffa502;
+        }
+
+        .notification-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1001;
+        }
+
+        .loading-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        .loading-text {
+            color: #333;
+            font-size: 18px;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 25px;
+            }
+
+            .form-options {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- ===== ESTRUCTURA HTML ===== -->
+<div class="login-container">
+    <div class="login-header">
+        <div class="logo">
+            <i>🔐</i>
+            <h1>Bienvenido</h1>
+        </div>
+        <p class="subtitle">Inicia sesión en tu cuenta</p>
+    </div>
+
+    <form id="loginForm" class="login-form">
+        <div class="input-group">
+            <div class="input-icon">
+                👤
+            </div>
+            <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="Nombre de usuario"
+            >
+        </div>
+
+        <div class="or-divider">
+            <span>O</span>
+        </div>
+
+        <div class="input-group">
+            <div class="input-icon">
+                📧
+            </div>
+            <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Correo electrónico"
+            >
+        </div>
+
+        <div class="input-group">
+            <div class="input-icon">
+                🔒
+            </div>
+            <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Contraseña"
+            >
+            <button type="button" class="toggle-password" id="togglePassword">
+                👁️
+            </button>
+        </div>
+
+        <div class="form-options">
+            <label class="checkbox-container">
+                <input type="checkbox" id="rememberMe">
+                <span class="checkmark"></span>
+                Recordarme
+            </label>
+            <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+        </div>
+
+        <button type="submit" class="login-btn" id="loginBtn">
+            <span class="btn-text">Iniciar Sesión</span>
+            <div class="spinner hidden" id="spinner"></div>
+        </button>
+
+        <div class="register-link">
+            ¿No tienes una cuenta? <a href="#" id="registerLink">Regístrate aquí</a>
+        </div>
+    </form>
+
+    <div class="role-info hidden" id="roleInfo">
+        <div class="role-card">
+            <i id="roleIcon">👑</i>
+            <h3 id="roleTitle">Rol del Usuario</h3>
+            <p id="roleDescription"></p>
+            <div class="permissions">
+                <h4>Permisos:</h4>
+                <ul id="permissionsList"></ul>
+            </div>
+            <button class="continue-btn" id="continueBtn">Continuar al Dashboard</button>
+        </div>
+    </div>
+
+    <div class="notification hidden" id="notification">
+        <div class="notification-content">
+            <i id="notificationIcon">⚠️</i>
+            <span id="notificationMessage"></span>
+        </div>
+    </div>
+</div>
+
+<div class="loading-overlay hidden" id="loadingOverlay">
+    <div class="loading-content">
+        <div class="loading-spinner"></div>
+        <p class="loading-text">Verificando credenciales...</p>
+    </div>
+</div>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+    // Configuración de la API
+    const API_BASE_URL = 'http://localhost:9085'; // Cambia esto según tu backend
+    const LOGIN_ENDPOINT = `${API_BASE_URL}/auth/login`;
+
+    // Configuración de roles y permisos
+    const ROLE_CONFIG = {
+        'ROLE_ADMIN': {
+            title: 'Administrador',
+            icon: '👑',
+            description: 'Tienes acceso completo al sistema',
+            permissions: [
+                'Gestionar todos los usuarios',
+                'Acceso a reportes completos',
+                'Configuración del sistema',
+                'Eliminar contenido',
+                'Asignar roles'
+            ],
+            redirectUrl: '/admin/dashboard.html'
+        },
+        'ROLE_USER': {
+            title: 'Usuario',
+            icon: '👤',
+            description: 'Acceso básico al sistema',
+            permissions: [
+                'Ver perfil propio',
+                'Editar información personal',
+                'Acceso a contenido público',
+                'Realizar pedidos'
+            ],
+            redirectUrl: '/user/dashboard.html'
+        },
+        'EDITOR': {
+            title: 'Editor',
+            icon: '✏️',
+            description: 'Puedes crear y editar contenido',
+            permissions: [
+                'Crear artículos',
+                'Editar contenido',
+                'Subir archivos',
+                'Moderar comentarios'
+            ],
+            redirectUrl: '/editor/dashboard.html'
+        },
+        'VIEWER': {
+            title: 'Espectador',
+            icon: '👁️',
+            description: 'Solo puedes ver contenido',
+            permissions: [
+                'Ver contenido público',
+                'Leer artículos',
+                'Ver estadísticas básicas'
+            ],
+            redirectUrl: '/viewer/dashboard.html'
+        }
+    };
+
+    // Elementos del DOM
+    const loginForm = document.getElementById('loginForm');
+    const usernameInput = document.getElementById('username');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const togglePasswordBtn = document.getElementById('togglePassword');
+    const loginBtn = document.getElementById('loginBtn');
+    const spinner = document.getElementById('spinner');
+    const btnText = document.querySelector('.btn-text');
+    const roleInfo = document.getElementById('roleInfo');
+    const roleTitle = document.getElementById('roleTitle');
+    const roleIcon = document.getElementById('roleIcon');
+    const roleDescription = document.getElementById('roleDescription');
+    const permissionsList = document.getElementById('permissionsList');
+    const continueBtn = document.getElementById('continueBtn');
+    const notification = document.getElementById('notification');
+    const notificationIcon = document.getElementById('notificationIcon');
+    const notificationMessage = document.getElementById('notificationMessage');
+    const loadingOverlay = document.getElementById('loadingOverlay');
+
+    // Mostrar/ocultar contraseña
+    togglePasswordBtn.addEventListener('click', function() {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+        this.innerHTML = type === 'password' ? '👁️' : '🙈';
+    });
+
+    // Mostrar notificación
+    function showNotification(message, type = 'error') {
+        notificationMessage.textContent = message;
+        notification.className = 'notification';
+
+        if (type === 'success') {
+            notification.classList.add('success');
+            notificationIcon.textContent = '✅';
+        } else if (type === 'warning') {
+            notification.classList.add('warning');
+            notificationIcon.textContent = '⚠️';
+        } else {
+            notificationIcon.textContent = '❌';
+        }
+
+        notification.classList.remove('hidden');
+
+        setTimeout(() => {
+            notification.classList.add('hidden');
+        }, 5000);
+    }
+
+    // Mostrar carga
+    function showLoading() {
+        loadingOverlay.classList.remove('hidden');
+    }
+
+    // Ocultar carga
+    function hideLoading() {
+        loadingOverlay.classList.add('hidden');
+    }
+
+    // Extraer rol del token JWT (simulado)
+    function extractRoleFromJwt(jwt) {
+        // En un caso real, decodificarías el JWT aquí
+        // Esta es una simulación basada en la respuesta de tu API
+        try {
+            // Simulación: basado en el usuario que inicia sesión
+            const user = usernameInput.value.toLowerCase() || emailInput.value.toLowerCase();
+
+            // Lógica de simulación de roles
+            if (user.includes('admin')) return 'ROLE_ADMIN';
+            if (user.includes('editor')) return 'EDITOR';
+            if (user.includes('viewer')) return 'VIEWER';
+            return 'ROLE_USER'; // Rol por defecto
+        } catch (error) {
+            console.error('Error al extraer rol:', error);
+            return 'ROLE_USER';
+        }
+    }
+
+    // Mostrar información del rol
+    function showRoleInfo(role) {
+        const config = ROLE_CONFIG[role] || ROLE_CONFIG['USER'];
+
+        roleTitle.textContent = config.title;
+        roleIcon.textContent = config.icon;
+        roleDescription.textContent = config.description;
+
+        // Limpiar lista de permisos
+        permissionsList.innerHTML = '';
+
+        // Agregar permisos
+        config.permissions.forEach(permission => {
+            const li = document.createElement('li');
+            li.textContent = permission;
+            permissionsList.appendChild(li);
+        });
+
+        // Configurar redirección
+        continueBtn.onclick = function() {
+            window.location.href = config.redirectUrl;
+        };
+
+        // Mostrar información del rol
+        roleInfo.classList.remove('hidden');
+        loginForm.classList.add('hidden');
+    }
+
+    // Manejar el envío del formulario
+    loginForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        // Validaciones básicas
+        if (!usernameInput.value && !emailInput.value) {
+            showNotification('Debes ingresar un nombre de usuario o correo electrónico');
+            return;
+        }
+
+        if (!passwordInput.value) {
+            showNotification('Debes ingresar una contraseña');
+            return;
+        }
+
+        // Mostrar estado de carga
+        loginBtn.disabled = true;
+        btnText.classList.add('hidden');
+        spinner.classList.remove('hidden');
+        showLoading();
+
+        try {
+            // Preparar datos para la API
+            const loginData = {
+                password: passwordInput.value
+            };
+
+            if (usernameInput.value) {
+                loginData.username = usernameInput.value;
+            } else {
+                loginData.email = emailInput.value;
+            }
+
+            console.log('Enviando datos de login:', loginData);
+
+            // Llamada a la API de Spring Boot
+            const response = await fetch(LOGIN_ENDPOINT, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(loginData)
+            });
+
+            const data = await response.json();
+            console.log('Respuesta del servidor:', data);
+
+            if (response.ok && data.jwt) {
+                // Login exitoso
+                showNotification('¡Login exitoso!', 'success');
+
+                // Extraer rol del usuario
+                const userRole = extractRoleFromJwt(data.jwt);
+
+                // Mostrar información del rol
+                setTimeout(() => {
+                    showRoleInfo(userRole);
+                    hideLoading();
+                }, 1500);
+
+                // Guardar token en localStorage (opcional)
+                localStorage.setItem('jwtToken', data.jwt);
+                localStorage.setItem('userRole', userRole);
+
+                // Guardar en sesión si se seleccionó "Recordarme"
+                if (document.getElementById('rememberMe').checked) {
+                    sessionStorage.setItem('username', usernameInput.value || '');
+                    sessionStorage.setItem('email', emailInput.value || '');
+                }
+
+            } else {
+                // Error en el login
+                const errorMsg = data.error || 'Error en el servidor';
+                showNotification(`Error: ${errorMsg}`);
+                hideLoading();
+            }
+
+        } catch (error) {
+            console.error('Error en la petición:', error);
+            showNotification('Error de conexión con el servidor');
+            hideLoading();
+        } finally {
+            // Restaurar estado del botón
+            loginBtn.disabled = false;
+            btnText.classList.remove('hidden');
+            spinner.classList.add('hidden');
+        }
+    });
+
+    // Enlace de registro
+    document.getElementById('registerLink').addEventListener('click', function(e) {
+        e.preventDefault();
+        showNotification('Función de registro en desarrollo', 'warning');
+    });
+
+    // Enlace de recuperación de contraseña
+    document.querySelector('.forgot-password').addEventListener('click', function(e) {
+        e.preventDefault();
+        showNotification('Función de recuperación en desarrollo', 'warning');
+    });
+
+    // Cargar datos guardados si existen
+    window.addEventListener('load', function() {
+        const savedUsername = sessionStorage.getItem('username');
+        const savedEmail = sessionStorage.getItem('email');
+
+        if (savedUsername) {
+            usernameInput.value = savedUsername;
+        } else if (savedEmail) {
+            emailInput.value = savedEmail;
+        }
+    });
+</script>
+</body>
+</html>

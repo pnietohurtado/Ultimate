@@ -19,6 +19,12 @@ if(togglePassword){
         const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
         passwordInput.setAttribute('type', type);
         this.innerHTML = type === 'password' ? '👁️' : '🙈';
+        
+        /* Just a test on how to fetch a URL 
+        fetch(LOGIN_ENDPOINT, {method: "POST"})
+        .then(response => console.log(response))
+        .catch(error => console.error(error)); 
+        */
     });
 }else{
     console.log('Data from the button ' + email); 
@@ -33,6 +39,8 @@ let email_value = email.value;
 let password_value = password.value; 
 
 loginBtn.addEventListener('click' , function() {
-    
+    fetch("http://localhost:9085/auth/login", {method: "POST"})
+    .then(response => console.log(response))
+    .catch(error => console.error(error)); 
 });
 
