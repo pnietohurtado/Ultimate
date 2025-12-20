@@ -1,7 +1,7 @@
 // First we have to declare the API where we can validate the user's login 
 // based on the data inside the database 
 const API_URL = 'http://localhost:9085'; // This part ain't going to change in a near future 
-const LOGIN_ENDPOINT = '${API_URL}/auth/login'; // Basically the path of the login inside of the AuthController inside of the API
+const LOGIN_ENDPOINT = 'http://localhost:9085/auth/login'; // Basically the path of the login inside of the AuthController inside of the API
 
 
 
@@ -25,6 +25,8 @@ if(togglePassword){
         .then(response => console.log(response))
         .catch(error => console.error(error)); 
         */
+
+        login(email.value, password.value) ; 
     });
 }else{
     console.log('Data from the button ' + email); 
@@ -35,12 +37,35 @@ if(togglePassword){
 
 
 // Functions about the login with de AUTHORIZATION API (LOGIN PART)
-let email_value = email.value; 
-let password_value = password.value; 
+async function login(username, password){
+    try{
+        //console.log('Username => ' + username + " Password => " + password); 
 
-loginBtn.addEventListener('click' , function() {
-    fetch("http://localhost:9085/auth/login", {method: "POST"})
-    .then(response => console.log(response))
-    .catch(error => console.error(error)); 
-});
+        const credentials = {
+            username: username, 
+            password: password
+        };
+        console.log('Credential sended to the server ' + credentials) ; 
+
+        const response = await fetch(`${LOGIN_ENDPOINT}`, { // Fetching the data to the API 
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json', 
+                    'Accept': 'application/json' 
+                },
+                body: JSON.stringify(credentials),
+                credentials: 'include'
+        }); 
+
+
+        if (!response.ok) { // Test to see if the response is right or not 
+            const errorData = await response.json().catch(() => ({}));
+            throw new Error(errorData.message || `Error HTTP number: ${response.status}`);
+        }
+
+    }catch(error){
+        console.error(error); 
+        throw error; 
+    }
+}
 
