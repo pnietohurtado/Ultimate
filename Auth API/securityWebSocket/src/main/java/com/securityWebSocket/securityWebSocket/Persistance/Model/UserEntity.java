@@ -2,10 +2,17 @@ package com.securityWebSocket.securityWebSocket.Persistance.Model;
 
 import com.securityWebSocket.securityWebSocket.Persistance.Enum.Role;
 import jakarta.persistence.*;
+import org.jspecify.annotations.Nullable;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "user")
-public class UserEntity {
+public class UserEntity implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,16 +57,27 @@ public class UserEntity {
         this.uuid = uuid;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
     public void setUsername(String username) {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        String authority = this.role.name(); // Siempre va a empezar con "ROLE_" ...
+        if (!authority.startsWith("ROLE_")) {
+            authority = "ROLE_" + authority;
+        }
+        return List.of(new SimpleGrantedAuthority(authority));
+    }
+
+    @Override
+    public @Nullable String getPassword() {
+        return this.password;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.username;
     }
 
     public void setPassword(String password) {

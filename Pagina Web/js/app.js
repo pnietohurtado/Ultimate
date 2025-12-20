@@ -1,6 +1,6 @@
 // First we have to declare the API where we can validate the user's login 
 // based on the data inside the database 
-const API_URL = 'http://localhost:8089'; // This part ain't going to change in a near future 
+const API_URL = 'http://localhost:9085'; // This part ain't going to change in a near future 
 const LOGIN_ENDPOINT = '${API_URL}/auth/login'; // Basically the path of the login inside of the AuthController inside of the API
 
 
@@ -24,17 +24,15 @@ if(togglePassword){
     console.log('Data from the button ' + email); 
     console.log('No button created!'); 
 }
+ 
 
 
-// Function to enter the web after a propper validation 
+
+// Functions about the login with de AUTHORIZATION API (LOGIN PART)
+let email_value = email.value; 
+let password_value = password.value; 
+
 loginBtn.addEventListener('click' , function() {
-    let passwordValidation = password.value; 
-    if(password != null ||
-        passwordValidation.length < 3 || 
-        passwordValidation.length > 15 
-    ){
-        console.log('Access denied to the web, Invalid password setting!'); 
-    }else{
-        console.log('Access granted, welcome!')
-    }
-}); 
+    
+});
+
