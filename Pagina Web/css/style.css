@@ -1,5 +1,10 @@
 body {
     background-color: #f0f4f8; /* Color de fondo claro */
+    background-image: url('img/Background01.jpg'); 
+    background-size: cover;
+    background-position: center; 
+    
+
 }
 .card {
     background-color: #ffffff; /* Fondo blanco */
@@ -16,4 +21,9 @@ body {
 .form-control:focus {
     border-color: #4CAF50;
     box-shadow: none; /* Sin sombra al hacer foco */
+}
+
+
+.mb-5{
+    margin-top: 20px;
 }
