@@ -33,6 +33,7 @@ if(togglePassword){
 
 loginBtn.addEventListener('click', function(){ // The login button 
     login(email.value, password.value) ; 
+    window.location.href = 'PruebaChat.html'; 
 }); 
 
 function isValidEmail(email) { // Email validation
