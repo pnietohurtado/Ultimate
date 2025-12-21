@@ -35,17 +35,35 @@ loginBtn.addEventListener('click', function(){ // The login button
     login(email.value, password.value) ; 
 }); 
 
+function isValidEmail(email) { // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
 async function login(email, password){
     try{
-        //console.log('Username => ' + username + " Password => " + password); 
+        console.log('Username => ' + email + " Password => " + password); 
 
-        const credentials = {
-            email: email, 
-            password: password
-        };
-        console.log('Credential sended to the server ' + credentials) ; 
-        console.log('API ENDPOINT ' + LOGIN_ENDPOINT); 
+        let credentials = null; 
+        
+        if(isValidEmail(email)){
+            console.log('Inside of the email request!')
+            credentials = {
+                email: email, 
+                password: password
+            };
+        }else{
+            console.log('Inside of the username!'); 
+            credentials = {
+                username: email, 
+                password: password
+            };
+        }
 
+        /*if(credentials == null){
+            console.log("The credentials are null!"); 
+        }*/
+        
         const response = await fetch(`${LOGIN_ENDPOINT}`, { // Fetching the data to the API 
                 method: 'POST',
                 headers: {
