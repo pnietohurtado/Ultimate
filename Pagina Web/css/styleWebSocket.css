@@ -77,9 +77,15 @@ body{
 }
 
 #messageInput:focus {
-    border-color: #4895ef;
-    box-shadow: 0 0 0 0.25rem rgba(67, 97, 238, 0.25);
+    border-color: #03c483;
+    box-shadow: 0 0 0 0.25rem rgba(3, 196, 131, 0.25);
     outline: none;
+}
+
+#messageInput:hover {
+    background-color: white;
+    border-color: #03c483;
+    transform: translateY(-1px);
 }
 
 #sendMessage {
@@ -94,8 +100,8 @@ body{
 }
 
 #sendMessage:hover {
-    background-color: #3a56d4;
-    border-color: #3a56d4;
+    background-color: #03c483;
+    border-color: #03c483;
     transform: translateY(-1px);
 }
 
@@ -121,6 +127,22 @@ body{
     margin-right: auto;
     border-bottom-left-radius: 5px;
 }
+
+/*Hover of the message bubble of the user and the other */
+
+#message-bubble-other:hover {
+    background-color: #03c483;
+    border-color: #03c483;
+    transform: translateY(-1px);
+}
+
+#message-bubble-user:hover {
+    background-color: #03c483;
+    border-color: #03c483;
+    transform: translateY(-1px);
+    /*animation-delay: 10s;*/
+}
+
 
 #message-container::-webkit-scrollbar {
     width: 6px;
