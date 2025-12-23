@@ -21,6 +21,7 @@
 
 body{
     background-color: #f8f9fa;
+    background-image: url('img/Gaviotas.png');
 }
 
 .container-fluid d-flex min-vh-100 px-3 py-3{
