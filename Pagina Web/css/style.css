@@ -38,3 +38,27 @@ body {
     box-shadow: 0px 10px 20px rgba(0,0,0,0.2);
 }
 
+#loginBtn{
+    background-color: #4361ee;
+    border-color: #4361ee;
+    border-radius: 25px;
+    padding: 12px 30px;
+    font-weight: bold;
+    min-height: 50px;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+#loginBtn:hover{
+    background-color: #03c483;
+    border-color: #03c483;
+    transform: translateY(-1px);
+}
+
+#register-link{
+    color:#4361ee;
+}
+
+#register-link:hover{
+    color:#03c483;
+}
