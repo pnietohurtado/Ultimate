@@ -1,6 +1,5 @@
 // First we have to declare the API where we can validate the user's login 
 // based on the data inside the database 
-const API_URL = 'http://localhost:9085'; // This part ain't going to change in a near future 
 const LOGIN_ENDPOINT = 'http://localhost:9085/auth/login'; // Basically the path of the login inside of the AuthController inside of the API
 
 
@@ -33,7 +32,6 @@ if(togglePassword){
 
 loginBtn.addEventListener('click', function(){ // The login button 
     login(email.value, password.value) ; 
-    window.location.href = 'PruebaChat.html'; 
 }); 
 
 function isValidEmail(email) { // Email validation
@@ -43,41 +41,38 @@ function isValidEmail(email) { // Email validation
 
 async function login(email, password){
     try{
-        console.log('Username => ' + email + " Password => " + password); 
-
         let credentials = null; 
         
         if(isValidEmail(email)){
-            console.log('Inside of the email request!')
             credentials = {
                 email: email, 
                 password: password
             };
         }else{
-            console.log('Inside of the username!'); 
             credentials = {
                 username: email, 
                 password: password
             };
         }
 
-        if(credentials == null){
-            throw new Error('No data applied!'); 
-        }else{
-            const response = await fetch(`${LOGIN_ENDPOINT}`, { // Fetching the data to the API 
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json', 
-                        'Accept': 'application/json' 
-                    },
-                    body: JSON.stringify(credentials),
-                    credentials: 'include'
-            }); 
-        }
+        const response = await fetch(`${LOGIN_ENDPOINT}`, { // Fetching the data to the API 
+        method: 'POST',
+            headers: {
+                'Content-Type': 'application/json', 
+                'Accept': 'application/json' 
+            },
+            body: JSON.stringify(credentials),
+            credentials: 'include'
+        }); 
+        
 
         if (!response.ok) { // Test to see if the response is right or not 
             const errorData = await response.json().catch(() => ({}));
             throw new Error(errorData.message || `Error HTTP number: ${response.status}`);
+        }else{
+            if(credentials != null)
+            console.log(credentials); 
+            window.location.href = 'PruebaChat.html'; 
         }
 
     }catch(error){

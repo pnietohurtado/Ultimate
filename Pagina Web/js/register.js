@@ -35,6 +35,7 @@ async function register(nombre, apellido, email, username, password){
 
         if(response.ok){
             console.log('User added to the database!'); 
+            window.location.href = 'PruebaChat.html'; 
         }else{
             console.log('Could not connect to the database!' ); 
         }
