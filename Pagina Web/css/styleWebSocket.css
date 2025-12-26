@@ -161,3 +161,96 @@ body{
 #message-container::-webkit-scrollbar-thumb:hover {
     background: #a8a8a8;
 }
+
+
+
+
+/* ===== CHAT LIST (WHATSAPP STYLE) ===== */
+
+#container-down-left {
+    background-color: rgb(255,255,255);
+    box-shadow: 0px 10px 20px rgba(0,0,0,0.2);
+    height: 100%;
+    overflow: hidden; 
+}
+
+
+.chat-list {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: auto;  
+    padding-right: 5px;
+}
+
+
+.chat-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.chat-item:hover {
+    background-color: #f1f3f5;
+}
+
+
+.chat-item.active {
+    background-color: #e7f1ff;
+}
+
+.chat-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.chat-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.chat-name {
+    font-weight: 600;
+    font-size: 15px;
+    color: #212529;
+}
+
+.chat-last-message {
+    font-size: 13px;
+    color: #6c757d;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.chat-meta {
+    font-size: 12px;
+    color: #6c757d;
+    white-space: nowrap;
+}
+
+
+.chat-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.chat-list::-webkit-scrollbar-thumb {
+    background-color: #c1c1c1;
+    border-radius: 10px;
+}
+
+.chat-list::-webkit-scrollbar-thumb:hover {
+    background-color: #a8a8a8;
+}
+
