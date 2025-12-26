@@ -61,20 +61,19 @@ async function login(email, password){
             };
         }
 
-        /*if(credentials == null){
-            console.log("The credentials are null!"); 
-        }*/
-        
-        const response = await fetch(`${LOGIN_ENDPOINT}`, { // Fetching the data to the API 
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json', 
-                    'Accept': 'application/json' 
-                },
-                body: JSON.stringify(credentials),
-                credentials: 'include'
-        }); 
-
+        if(credentials == null){
+            throw new Error('No data applied!'); 
+        }else{
+            const response = await fetch(`${LOGIN_ENDPOINT}`, { // Fetching the data to the API 
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json', 
+                        'Accept': 'application/json' 
+                    },
+                    body: JSON.stringify(credentials),
+                    credentials: 'include'
+            }); 
+        }
 
         if (!response.ok) { // Test to see if the response is right or not 
             const errorData = await response.json().catch(() => ({}));

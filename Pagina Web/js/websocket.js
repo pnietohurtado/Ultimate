@@ -4,6 +4,9 @@ const messageContainer = document.getElementById('message-container');
 
 sendBtn.addEventListener('click', function(){
     const messageDiv = document.createElement('div'); 
+
+    messageDiv.setAttribute('id', 'message-bubble-user'); 
+
     messageDiv.textContent = textField.value; 
     messageDiv.classList.add('message-bubble', 'user'); 
     console.log(messageDiv.className)
@@ -18,6 +21,9 @@ textField.addEventListener('keydown', function(e){
         e.preventDefault(); 
 
         const messageDiv = document.createElement('div'); 
+
+        messageDiv.setAttribute('id', 'message-bubble-user'); 
+
         messageDiv.textContent = textField.value; 
         messageDiv.classList.add('message-bubble' , 'user'); 
         console.log(messageDiv.className)
