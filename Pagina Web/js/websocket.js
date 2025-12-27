@@ -11,6 +11,7 @@ const chat03 = document.getElementById('chat03')
 
 themeBtn.addEventListener('click', function(){
     document.documentElement.style.setProperty("--color-preanimation-1", "black"); // In order to change the page theme
+    document.documentElement.style.setProperty("--color-background-light", "black");
 }); 
 
 sendBtn.addEventListener('click', function(){
