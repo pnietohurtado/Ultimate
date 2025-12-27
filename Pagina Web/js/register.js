@@ -8,7 +8,7 @@ const loginBtn = document.getElementById('loginBtn');
 
 // The login botton in order to send to the API all the information 
 loginBtn.addEventListener('click', function(){
-    (email.value, username.value, password.value); 
+    register(email.value, username.value, password.value); 
 }); 
 
 async function register( email, username, password){

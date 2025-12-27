@@ -1,17 +1,23 @@
 
+:root{
+    --color-animation-1: #03c483; 
+    --color-preanimation-1: #4361ee; 
+}
+
+
 body{
     background-color: #f8f9fa;
     background-image: url('img/Gaviotas.png');
 }
 
 .container-fluid d-flex min-vh-100 px-3 py-3{
-    background-color: #4361ee;
+    background-color: var(--color-preanimation-1);
 }
 .col-12 col-sm-12 col-md-12 col-lg-11 col-xl-12 col-xxl-12{
-    background-color: #4361ee;
+    background-color: var(--color-preanimation-1);
 }
 .card p-5 shadow h-100{
-    background-color: #4361ee;
+    background-color: var(--color-preanimation-1);
 }
 
 #container-chat{
@@ -71,26 +77,26 @@ body{
     min-height: 50px;
     padding: 12px 15px;
     font-size: 16px;
-    border: 1px solid #4361ee;
+    border: 1px solid var(--color-preanimation-1);
     border-radius: 25px;
     transition: all 0.3s ease;
 }
 
 #messageInput:focus {
-    border-color: #03c483;
+    border-color: var(--color-animation-1);
     box-shadow: 0 0 0 0.25rem rgba(3, 196, 131, 0.25);
     outline: none;
 }
 
 #messageInput:hover {
     background-color: white;
-    border-color: #03c483;
+    border-color: var(--color-animation-1);
     transform: translateY(-1px);
 }
 
 #sendMessage {
-    background-color: #4361ee;
-    border-color: #4361ee;
+    background-color: var(--color-preanimation-1);
+    border-color: var(--color-preanimation-1);
     border-radius: 25px;
     padding: 12px 30px;
     font-weight: bold;
@@ -100,8 +106,8 @@ body{
 }
 
 #sendMessage:hover {
-    background-color: #03c483;
-    border-color: #03c483;
+    background-color: var(--color-animation-1);
+    border-color: var(--color-animation-1);
     transform: translateY(-1px);
 }
 
@@ -115,7 +121,7 @@ body{
 }
 
 .message-bubble.user {
-    background-color: #4361ee;
+    background-color: var(--color-preanimation-1);
     color: white;
     margin-left: auto;
     border-bottom-right-radius: 5px;
@@ -131,14 +137,14 @@ body{
 /*Hover of the message bubble of the user and the other */
 
 #message-bubble-other:hover {
-    background-color: #03c483;
-    border-color: #03c483;
+    background-color: var(--color-animation-1);
+    border-color:var(--color-animation-1);
     transform: translateY(-1px);
 }
 
 #message-bubble-user:hover {
-    background-color: #03c483;
-    border-color: #03c483;
+    background-color: var(--color-animation-1);
+    border-color: var(--color-animation-1);
     transform: translateY(-1px);
     /*animation-delay: 10s;*/
 }
@@ -204,7 +210,7 @@ body{
 }
 
 .chat-item.active:hover{
-    background-color: #4361ee; 
+    background-color: var(--color-preanimation-1); 
 }
 
 .chat-avatar {
@@ -286,7 +292,7 @@ body{
 
 /*In order to change the profile picture*/
 .profile-avatar:hover{
-    background-color: #4361ee;
+    background-color: var(--color-preanimation-1);
 }
 
 .profile-avatar {
@@ -303,7 +309,7 @@ body{
 }
 
 .profile-name:hover{
-    background-color: #4361ee;
+    background-color: var(--color-preanimation-1);
 }
 
 
@@ -341,6 +347,6 @@ body{
 }
 
 .search-input:focus {
-    border-color: #4361ee;
+    border-color: var(--color-preanimation-1);
     box-shadow: 0 0 0 0.2rem rgba(67, 97, 238, 0.25);
 }

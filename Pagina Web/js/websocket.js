@@ -1,9 +1,17 @@
 const sendBtn = document.getElementById('sendMessage'); 
 const textField = document.getElementById('messageInput'); 
 const messageContainer = document.getElementById('message-container'); 
+
+/*Change Theme Btn*/
+const themeBtn = document.getElementById('changeTheme'); 
+
 const chat01 = document.getElementById('chat01')
 const chat02 = document.getElementById('chat02')
 const chat03 = document.getElementById('chat03')
+
+themeBtn.addEventListener('click', function(){
+    document.documentElement.style.setProperty("--color-preanimation-1", "black"); // In order to change the page theme
+}); 
 
 sendBtn.addEventListener('click', function(){
     const messageDiv = document.createElement('div'); 
