@@ -20,12 +20,6 @@ public class UserEntity implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long uuid; // Id del personaje
 
-    @Column(name = "firstName")
-    private String firstName;
-
-    @Column(name = "lastName")
-    private String lastName;
-
     @Column(name = "username")
     private String username;
 
@@ -45,8 +39,6 @@ public class UserEntity implements UserDetails {
     // Getter y Setter
 
     public void setUuid (Long id){this.uuid = id; }
-    public void setFirstName(String name) {this.firstName = name; }
-    public void setLastName (String name) {this.lastName = name; }
     public void setEmail(String email){this.email = email; }
     public void setPassword(String password){this.password = password; }
     public void setRole(Role role){this.role = role; }
@@ -54,14 +46,6 @@ public class UserEntity implements UserDetails {
 
     public Long getUuid() {
         return uuid;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
     }
 
     public String getEmail() {

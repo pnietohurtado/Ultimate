@@ -1,7 +1,6 @@
 const LOGIN_ENDPOINT = 'http://localhost:9085/auth/register'; // Register ENDPOINT 
 
-const nombre = document.getElementById('nombre'); 
-const apellido = document.getElementById('apellido'); 
+
 const email = document.getElementById('email'); 
 const username = document.getElementById('username'); 
 const password = document.getElementById('password'); 
@@ -9,15 +8,13 @@ const loginBtn = document.getElementById('loginBtn');
 
 // The login botton in order to send to the API all the information 
 loginBtn.addEventListener('click', function(){
-    register(nombre.value, apellido.value, email.value, username.value, password.value); 
+    (email.value, username.value, password.value); 
 }); 
 
-async function register(nombre, apellido, email, username, password){
+async function register( email, username, password){
     try{
         
         const credentials = {
-            firstName: nombre, 
-            lastName: apellido, 
             email: email, 
             username: username, 
             password: password
