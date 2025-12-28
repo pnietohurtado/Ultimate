@@ -4,14 +4,20 @@ const messageContainer = document.getElementById('message-container');
 
 /*Change Theme Btn*/
 const themeBtn = document.getElementById('changeTheme'); 
+const themeNow = "light"; 
 
 const chat01 = document.getElementById('chat01')
 const chat02 = document.getElementById('chat02')
 const chat03 = document.getElementById('chat03')
 
 themeBtn.addEventListener('click', function(){
-    document.documentElement.style.setProperty("--color-preanimation-1", "black"); // In order to change the page theme
-    document.documentElement.style.setProperty("--color-background-light", "black");
+    if(themeNow === "light"){
+        document.body.setAttribute("data-theme", "dark");
+        themeNow = "dark"; 
+    }else if(themeNow === "dark"){
+        document.body.setAttribute("data-theme", "light");
+        themeNow = "light"; 
+    }
 }); 
 
 sendBtn.addEventListener('click', function(){
