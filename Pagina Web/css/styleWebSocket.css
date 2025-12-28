@@ -2,15 +2,19 @@
 :root{
     --color-animation-1: #03c483; 
     --color-preanimation-1: #4361ee; 
+}
 
-    /*Background color*/
-    --color-background-light-2: #f8f9fa;
-    --color-background-light: #f8f9fa; 
+[data-theme="dark"]{
+    --color-background: #042a50; 
+}
+
+[data-theme="light"]{
+    --color-background: #f8f9fa; 
 }
 
 
 body{
-    background-color: var(--color-background-light);
+    background-color: var(--color-background);
     background-image: url('img/Gaviotas.png');
 }
 
@@ -30,17 +34,17 @@ body{
 }
 
 #container-upper-left{
-    background-color: var(--color-background-light);
+    background-color: var(--color-background);
     box-shadow: 0px 10px 20px rgba(0,0,0,0.2);
 }
 
 #container-down-left{
-    background-color: var(--color-background-light);
+    background-color: var(--color-background);
     box-shadow: 0px 10px 20px rgba(0,0,0,0.2);
 }
 
 #container-right{
-    background-color: var(--color-background-light);
+    background-color: var(--color-background);
     box-shadow: 0px 10px 20px rgba(0,0,0,0.2);
     position: relative; 
     padding-bottom: 80px !important;
@@ -68,7 +72,7 @@ body{
     display: flex;
     gap: 10px;
     padding: 10px;
-    background-color: var(--color-background-light);
+    background-color: var(--color-background);
     border-top: 1px solid #dee2e6;
     position: sticky;
     bottom: 0;
@@ -93,7 +97,7 @@ body{
 }
 
 #messageInput:hover {
-    background-color: var(--color-background-light);
+    background-color: var(--color-background);
     border-color: var(--color-animation-1);
     transform: translateY(-1px);
 }
