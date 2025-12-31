@@ -6,9 +6,6 @@ const messageContainer = document.getElementById('message-container');
 const themeBtn = document.getElementById('changeTheme'); 
 let themeNow = "light"; 
 
-const chat01 = document.getElementById('chat01')
-const chat02 = document.getElementById('chat02')
-const chat03 = document.getElementById('chat03')
 
 themeBtn.addEventListener('click', function(){
     if(themeNow === "light"){
@@ -53,28 +50,32 @@ textField.addEventListener('keydown', function(e){
 }); 
 
 
-chat01.addEventListener('click', function(){
-    if(chat01.className.split(" ").at(1) === 'active'){
-        console.log('You are alredy selected'); 
-    }else{
-        chat01.classList.add(chat01.className.split(" ").at(0), 'active'); 
-    }
-})
+/* Set the new chat from normal to active, by changing the class */
+const chatConversation = document.querySelectorAll("chat-item"); 
 
-chat02.addEventListener('click', function(){
-    if(chat02.className.split(" ").at(1) === 'active'){
-        console.log('You are alredy selected'); 
-    }else{
-        chat02.classList.add(chat01.className.split(" ").at(0), 'active'); 
-    }
-})
+document.addEventListener("DOMContentLoaded", function(){
 
-chat03.addEventListener('click', function(){
-    if(chat03.className.split(" ").at(1) === 'active'){
-        console.log('You are alredy selected'); 
-    }else{
-        chat03.classList.add(chat01.className.split(" ").at(0), 'active'); 
-    }
-})
+    const chatList = document.querySelector("chat.list"); 
+
+    chatList.addEventListener('click', function(){
+
+        chatList.classList.toggle("active"); 
+        this.classList.toggle("active"); 
+
+    }); 
+
+
+    
+    chatConversation.forEach(link => {
+        link.addEventListener('click', function(e){
+            e.preventDefault(); 
+            chatConversation.forEach(l => l.classList.remove("active")); 
+            this.classList.add("active"); 
+
+        }); 
+    }); 
+
+
+}); 
  
 
