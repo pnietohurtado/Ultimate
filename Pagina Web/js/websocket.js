@@ -4,7 +4,7 @@ const messageContainer = document.getElementById('message-container');
 
 /*Change Theme Btn*/
 const themeBtn = document.getElementById('changeTheme'); 
-const themeNow = "light"; 
+let themeNow = "light"; 
 
 const chat01 = document.getElementById('chat01')
 const chat02 = document.getElementById('chat02')
