@@ -1,3 +1,5 @@
+import { username } from "./app.js"; /*Import the data from the "app.js" */
+
 const sendBtn = document.getElementById('sendMessage'); 
 const textField = document.getElementById('messageInput'); 
 const messageContainer = document.getElementById('message-container'); 
@@ -6,6 +8,8 @@ const messageContainer = document.getElementById('message-container');
 const themeBtn = document.getElementById('changeTheme'); 
 let themeNow = "light"; 
 
+/*Username*/
+let user = document.getElementById("username-chat"); 
 
 themeBtn.addEventListener('click', function(){
     if(themeNow === "light"){
@@ -15,6 +19,11 @@ themeBtn.addEventListener('click', function(){
         document.body.setAttribute("data-theme", "light");
         themeNow = "light"; 
     }
+}); 
+
+/*To export the data from the login*/
+document.addEventListener("DOMContentLoaded", function(){
+    user.innerHTML = username; 
 }); 
 
 sendBtn.addEventListener('click', function(){

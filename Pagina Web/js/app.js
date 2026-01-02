@@ -81,4 +81,8 @@ async function login(email, password){
     }
 }
 
+// To Send the username to the websocket chat
+export const username = email.value; 
+
+
 
