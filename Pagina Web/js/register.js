@@ -42,3 +42,9 @@ async function register( email, username, password){
     }
 
 }
+
+
+// To Send the username to the websocket chat
+localStorage.setItem('usuario_register', JSON.stringify({
+    name: username.value 
+}));

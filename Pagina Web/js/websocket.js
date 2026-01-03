@@ -1,5 +1,3 @@
-import { username } from "./app.js"; /*Import the data from the "app.js" */
-
 const sendBtn = document.getElementById('sendMessage'); 
 const textField = document.getElementById('messageInput'); 
 const messageContainer = document.getElementById('message-container'); 
@@ -23,7 +21,12 @@ themeBtn.addEventListener('click', function(){
 
 /*To export the data from the login*/
 document.addEventListener("DOMContentLoaded", function(){
-    user.innerHTML = username; 
+    const user_data = JSON.parse(localStorage.getItem('usuario'));
+    const user_data_register = JSON.parse(localStorage.getItem('usuario_register'));
+
+    if(user_data_register){
+        user.innerHTML = user_data_register.name; 
+    }
 }); 
 
 sendBtn.addEventListener('click', function(){
