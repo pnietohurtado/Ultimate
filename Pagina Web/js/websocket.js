@@ -20,13 +20,25 @@ themeBtn.addEventListener('click', function(){
 }); 
 
 /*To export the data from the login*/
-document.addEventListener("DOMContentLoaded", function(){
-    const user_data = JSON.parse(localStorage.getItem('usuario'));
-    const user_data_register = JSON.parse(localStorage.getItem('usuario_register'));
 
-    if(user_data_register){
-        user.innerHTML = user_data_register.name; 
-    }
+ function getCookie(nombre) {
+            const nombreBuscar = nombre + "=";
+            const cookiesDecodificadas = decodeURIComponent(document.cookie);
+            const cookiesArray = cookiesDecodificadas.split(';');
+            
+            for (let i = 0; i < cookiesArray.length; i++) {
+                let cookie = cookiesArray[i].trim();
+                if (cookie.indexOf(nombreBuscar) === 0) {
+                    return cookie.substring(nombreBuscar.length, cookie.length);
+                }
+            }
+            return ""; 
+}
+
+document.addEventListener("DOMContentLoaded", function(){
+    const nombre = getCookie('usuario');
+
+    console.log(`Bienvenido de nuevo, ${nombre}`);
 }); 
 
 sendBtn.addEventListener('click', function(){

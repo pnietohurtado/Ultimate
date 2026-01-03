@@ -32,6 +32,7 @@ async function register( email, username, password){
 
         if(response.ok){
             console.log('User added to the database!'); 
+            document.cookie = "usuario=Juan; path=/; max-age=3600";
             window.location.href = 'PruebaChat.html'; 
         }else{
             console.log('Could not connect to the database!' ); 
@@ -42,9 +43,3 @@ async function register( email, username, password){
     }
 
 }
-
-
-// To Send the username to the websocket chat
-localStorage.setItem('usuario_register', JSON.stringify({
-    name: username.value 
-}));
