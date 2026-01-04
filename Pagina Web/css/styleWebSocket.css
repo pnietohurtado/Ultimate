@@ -258,7 +258,7 @@ body{
 
 .chat-last-message {
     font-size: 13px;
-    color: #6c757d;
+    color: var(--color-text);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -267,7 +267,7 @@ body{
 
 .chat-meta {
     font-size: 12px;
-    color: #6c757d;
+    color: var(--color-text);
     white-space: nowrap;
 }
 
