@@ -31,9 +31,8 @@ async function register( email, username, password){
         }); 
 
         if(response.ok){
-            console.log('User added to the database!'); 
-            document.cookie = "usuario=Juan; path=/; max-age=3600";
-            window.location.href = 'PruebaChat.html'; 
+            const value_username = document.getElementById('username').value.trim();
+            window.location.href =  `PruebaChat.html?name=${encodeURIComponent(value_username)}`; 
         }else{
             console.log('Could not connect to the database!' ); 
         }

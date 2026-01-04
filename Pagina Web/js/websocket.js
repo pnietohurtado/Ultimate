@@ -20,26 +20,14 @@ themeBtn.addEventListener('click', function(){
 }); 
 
 /*To export the data from the login*/
-
- function getCookie(nombre) {
-            const nombreBuscar = nombre + "=";
-            const cookiesDecodificadas = decodeURIComponent(document.cookie);
-            const cookiesArray = cookiesDecodificadas.split(';');
-            
-            for (let i = 0; i < cookiesArray.length; i++) {
-                let cookie = cookiesArray[i].trim();
-                if (cookie.indexOf(nombreBuscar) === 0) {
-                    return cookie.substring(nombreBuscar.length, cookie.length);
-                }
-            }
-            return ""; 
-}
-
 document.addEventListener("DOMContentLoaded", function(){
-    const nombre = getCookie('usuario');
+    console.log("Query string:", window.location.search);
+    const param = new URLSearchParams(window.location.search); 
 
-    console.log(`Bienvenido de nuevo, ${nombre}`);
+    console.log(param.get('name')); 
 }); 
+
+
 
 sendBtn.addEventListener('click', function(){
     const messageDiv = document.createElement('div'); 
