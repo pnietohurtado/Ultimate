@@ -21,10 +21,10 @@ themeBtn.addEventListener('click', function(){
 
 /*To export the data from the login*/
 document.addEventListener("DOMContentLoaded", function(){
-    console.log("Query string:", window.location.search);
     const param = new URLSearchParams(window.location.search); 
 
     console.log(param.get('name')); 
+    user.innerHTML = param.get('name'); 
 }); 
 
 

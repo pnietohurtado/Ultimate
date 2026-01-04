@@ -32,7 +32,8 @@ async function register( email, username, password){
 
         if(response.ok){
             const value_username = document.getElementById('username').value.trim();
-            window.location.href =  `PruebaChat.html?name=${encodeURIComponent(value_username)}`; 
+            //console.log(value_username)
+            window.location.href =  `PruebaChat.html?name=${value_username}`;
         }else{
             console.log('Could not connect to the database!' ); 
         }
