@@ -4,14 +4,18 @@
     --color-background-back: #2b2b2c; 
 
     --color-animation-1: #03c483; 
-    --color-preanimation-1: #4361ee; 
+    --color-preanimation-1: #03c483; 
     --color-text:white; /*Color of the text*/
 
     /*Message bubble colors*/
     --color-message-bubble-other:#474747; 
-    --color-message-bubble-user: #42358f; 
+    --color-message-bubble-user: #03c483; 
 
     --background-image: url('img/black.jpg');
+
+    /*Chat Changes*/
+    --color-chat-action-hover: #03c483; 
+    --color-chat-action-active: #03c483; 
 }
 
 [data-theme="light"]{
@@ -27,6 +31,11 @@
     --color-message-bubble-user: #4361ee; 
 
     --background-image: url('img/Gaviotas.png'); 
+
+    /*Chat Changes*/
+    --color-chat-action-hover: #f1f3f5; 
+    --color-chat-action-active: #f1f3f5; 
+
 }
 
 
@@ -225,13 +234,15 @@ body{
     transition: background-color 0.2s ease;
 }
 
+/*Chat changes*/
+
 .chat-item:hover {
-    background-color: #f1f3f5;
+    background-color: var(--color-chat-action-hover);
 }
 
 
 .chat-item.active {
-    background-color: #e7f1ff;
+    background-color: var(--color-chat-action-active);
 }
 
 .chat-item.active:hover{
