@@ -70,9 +70,8 @@ async function login(email, password){
             const errorData = await response.json().catch(() => ({}));
             throw new Error(errorData.message || `Error HTTP number: ${response.status}`);
         }else{
-            if(credentials != null)
-            console.log(credentials); 
-            window.location.href = 'PruebaChat.html'; 
+            const value_username = document.getElementById('username').value.trim();
+            window.location.href =  `PruebaChat.html?name=${value_username}`;
         }
 
     }catch(error){
@@ -80,10 +79,3 @@ async function login(email, password){
         throw error; 
     }
 }
-
-// To Send the username to the websocket chat
-localStorage.setItem('usuario', JSON.stringify({
-    name: email.value 
-}));
-
-
