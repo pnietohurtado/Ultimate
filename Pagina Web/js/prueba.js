@@ -1,8 +1,18 @@
+let username = "Pable"; 
+
+/*To export the data from the login*/
+document.addEventListener("DOMContentLoaded", function(){
+    const param = new URLSearchParams(window.location.search); 
+
+    console.log(param.get('name')); 
+    username = param.get('name'); 
+}); 
+
 class WebSocketChat {
     constructor() {
         this.stompClient = null;
         this.currentRoom = 'chat01'; // Sala por defecto
-        this.currentUser = 'Pablo Nieto'; // Usuario por defecto
+        this.currentUser = username; // Usuario por defecto
         
         this.initializeEventListeners();
         this.connectWebSocket();
