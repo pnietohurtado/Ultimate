@@ -27,7 +27,7 @@ async function register( email, username, password){
                         'Accept': 'application/json' 
                     },
                     body: JSON.stringify(credentials),
-                    credentials: 'include'
+                    credentials: 'same-origin'
         }); 
 
         if(response.ok){

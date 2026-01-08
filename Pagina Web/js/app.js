@@ -62,15 +62,14 @@ async function login(email, password){
                 'Accept': 'application/json' 
             },
             body: JSON.stringify(credentials),
-            credentials: 'include'
+            credentials: 'same-origin'
         }); 
         
 
         if (!response.ok) { // Test to see if the response is right or not 
-            const errorData = await response.json().catch(() => ({}));
-            throw new Error(errorData.message || `Error HTTP number: ${response.status}`);
+            alert("You must introduce the correct parameters!"); 
         }else{
-            const value_username = document.getElementById('username').value.trim();
+            const value_username = document.getElementById('email').value.trim();
             window.location.href =  `PruebaChat.html?name=${value_username}`;
         }
 
