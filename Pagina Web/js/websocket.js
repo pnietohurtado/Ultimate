@@ -20,18 +20,6 @@ themeBtn.addEventListener('click', function(){
     }
 }); 
 
-/*To export the data from the login*/
-document.addEventListener("DOMContentLoaded", function(){
-    const param = new URLSearchParams(window.location.search); 
-
-    nameUser = param.get('name'); 
-    user.innerHTML = param.get('name'); 
-
-    window.chatApp = new WebSocketChat(nameUser); 
-}); 
-
-
-
 sendBtn.addEventListener('click', function(){
     const messageDiv = document.createElement('div'); 
 
@@ -66,7 +54,7 @@ textField.addEventListener('keydown', function(e){
 
 
 /* Set the new chat from normal to active, by changing the class */
-const chatConversation = document.querySelectorAll("chat-item"); 
+/*const chatConversation = document.querySelectorAll("chat-item"); 
 
 document.addEventListener("DOMContentLoaded", function(){
 
@@ -91,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function(){
     }); 
 
 
-}); 
+}); */
 
 
 
@@ -104,7 +92,7 @@ class WebSocketChat {
         this.currentRoom = 'chat01'; 
         this.currentUser = usernameVariable;
         
-        this.initializeEventListeners();
+        /*this.initializeEventListeners();*/
         this.connectWebSocket();
     }
 
@@ -138,7 +126,6 @@ class WebSocketChat {
             });
             
             console.log(`Suscribe to the room: ${roomID}`);
-            this.displaySystemMessage(`Enter the room: ${roomID}`);
             this.currentRoom = roomID;
             
             this.updateActiveRoom();
@@ -166,7 +153,6 @@ class WebSocketChat {
 
     handleIncomingMessage(message) {
         if (message.user !== this.currentUser) {
-            this.displayMessage(message, false);
         }
     }
 
@@ -221,3 +207,17 @@ class WebSocketChat {
 }
  
 
+
+
+
+/* Event that will always start when the web app is loaded*/
+
+/*To export the data from the login*/
+document.addEventListener("DOMContentLoaded", function(){
+    const param = new URLSearchParams(window.location.search); 
+
+    nameUser = param.get('name'); 
+    user.innerHTML = param.get('name'); 
+
+    window.chatApp = new WebSocketChat(nameUser); 
+}); 
