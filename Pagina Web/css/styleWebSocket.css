@@ -94,6 +94,11 @@ body{
     padding-right: 5px;
 }
 
+/*Fixing the position of the time in the chat */
+.message-time{
+    float: right;
+}
+
 .message-input-container {
     display: flex;
     gap: 10px;

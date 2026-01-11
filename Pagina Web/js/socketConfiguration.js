@@ -2,7 +2,7 @@
 class WebSocketChat {
 constructor(usernameVariable) {
 this.stompClient = null;
-this.currentRoom = 'chat01';
+this.currentRoom = 'pnh0002';
 this.currentUser = usernameVariable;
 
     this.connectWebSocket();
