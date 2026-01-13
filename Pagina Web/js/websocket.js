@@ -1,12 +1,12 @@
+import {username} from "app.js"; 
+
 const sendBtn = document.getElementById('sendMessage');
 const textField = document.getElementById('messageInput');
 const messageContainer = document.getElementById('message-container');
 
-/Change Theme Btn/
 const themeBtn = document.getElementById('changeTheme');
 let themeNow = "light";
 
-/Username/
 let user = document.getElementById("username-chat");
 let nameUser = "Pevlo";
 
@@ -59,8 +59,10 @@ const chatList = document.querySelector(".chat-list");
 
 
 document.addEventListener("DOMContentLoaded", function(){
-    const param = new URLSearchParams(window.location.search);
+    /*const param = new URLSearchParams(window.location.search);
 
     nameUser = param.get('name'); 
-    user.innerHTML = param.get('name'); 
+    user.innerHTML = param.get('name'); */
+
+    user.innerHTML = username; 
 });

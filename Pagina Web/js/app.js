@@ -69,8 +69,12 @@ async function login(email, password){
         if (!response.ok) { // Test to see if the response is right or not 
             alert("You must introduce the correct parameters!"); 
         }else{
-            const value_username = document.getElementById('email').value.trim();
-            window.location.href =  `PruebaChat.html?name=${value_username}`;
+            const username =  async () => {
+                const value_username = document.getElementById('email').value.trim();
+            }
+            //const value_username = document.getElementById('email').value.trim();
+            //window.location.href =  `PruebaChat.html?name=${value_username}`;
+            window.location.href =  `PruebaChat.html?name=${username}`;
         }
 
     }catch(error){
@@ -78,3 +82,5 @@ async function login(email, password){
         throw error; 
     }
 }
+
+export {username}; 
