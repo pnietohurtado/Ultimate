@@ -1,4 +1,4 @@
-import {username} from "app.js"; 
+/*import {username} from "app.js"; */
 
 const sendBtn = document.getElementById('sendMessage');
 const textField = document.getElementById('messageInput');
@@ -64,5 +64,5 @@ document.addEventListener("DOMContentLoaded", function(){
     nameUser = param.get('name'); 
     user.innerHTML = param.get('name'); */
 
-    user.innerHTML = username; 
+    user.innerHTML = "UserDefault"; 
 });

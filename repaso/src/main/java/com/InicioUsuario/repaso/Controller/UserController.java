@@ -25,7 +25,7 @@ public class UserController {
     private UserServiceImpl service;
 
     @GetMapping("/findAll")
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('ADMIN')")
     public List<UserEntity> findAllUsers(){
         System.out.println("Function executed correctly!");
         return service.findAllUsers();

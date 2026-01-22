@@ -126,6 +126,13 @@ escapeHtml(text) {
 document.addEventListener("DOMContentLoaded", function(){
     const param = new URLSearchParams(window.location.search);
 
-    nameUser = param.get('name'); 
-    window.chatApp = new WebSocketChat(nameUser); 
+    let nameUser = param.get('name'); 
+
+    if(!nameUser){
+        nameUser = "UsuarioDefault"; 
+        window.chatApp = new WebSocketChat(nameUser); 
+    }else{
+        window.chatApp = new WebSocketChat(nameUser); 
+    }
+    
 });
