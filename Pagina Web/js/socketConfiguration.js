@@ -1,3 +1,6 @@
+export {createConversation} from "../js/MongoDBCode/mongo"; 
+
+
 /* -------------- Socket Configuration --------------------*/
 class WebSocketChat {
 constructor(usernameVariable) {
@@ -53,6 +56,9 @@ sendMessage(messageText) {
         this.stompClient.send(`/app/chat/${this.currentRoom}`, {}, JSON.stringify(chatMessage));
         
         this.displayMessage(chatMessage, true);
+
+        // In order to send the message to the database 
+        createConversation(this.currentRoom, chatMessage); 
         
         document.getElementById('messageInput').value = '';
     } else {
