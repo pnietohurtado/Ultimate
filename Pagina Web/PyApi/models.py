@@ -9,10 +9,10 @@ class WhoIs(Enum):
 
 class Data(BaseModel): 
     message: str 
-    date:  datetime = Field(default_factory=datetime.now)
+    date:  Optional[datetime] = Field(default_factory=datetime.now)
     who: WhoIs
 
 class Message(BaseModel): 
     _id: Optional[int] = None
-    chatRoom: int 
+    chatRoom: str 
     messages:Data = []

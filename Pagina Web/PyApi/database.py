@@ -1,9 +1,9 @@
 from motor.motor_asyncio import AsyncIOMotorClient
-from models import Message
+from models import Message,WhoIs
 from bson import ObjectId
 
 message = AsyncIOMotorClient('mongodb://localhost:27017/')
-database = message.FinalDataBase
+database = message.FinalDataBase2
 collection = database.messages
 
 async def initializeDB():
@@ -11,9 +11,11 @@ async def initializeDB():
     if count == 0:
         await collection.insert_one({
             '_id': 1,
-            'name': 'Pablo',
-            'surname': 'Nieto',
-            'ticket': 23
+            'chatRoom': 'pnh0002',
+            'messages': [{
+                'message': 'Hola que tal',
+                'who': WhoIs.USER.value
+            }]
         })
         print("Base de datos inicializada")
     else:
