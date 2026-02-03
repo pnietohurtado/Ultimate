@@ -45,3 +45,17 @@ async def send_message(message: dict):
     await collection.insert_one(message)
     created_client = await collection.find_one({'_id': message['_id']})
     return Message(**created_client) if created_client else None
+
+
+
+# Function to add a object into the chatRoom array 
+async def add_message(who: WhoIs, message: Message): 
+    await collection.update_one(
+        {'_id': 1},
+        { '$push': {
+            'messages': {
+                'message': message,
+                'who': who
+            }
+        }}
+    ); 
