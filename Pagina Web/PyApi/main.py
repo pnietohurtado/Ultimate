@@ -1,9 +1,18 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from models import Message
 from database import initializeDB,add_message, get_all_messages
 from models import WhoIs
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get('/')
 async def welcome(): 
@@ -20,5 +29,5 @@ async def sendMessage(who: WhoIs, message:str):
 
 @app.get('/api/getmessages')
 async def getAllMessages(): 
-    await get_all_messages() 
-    return {'message': 'Getting all the messages'}
+    messages = await get_all_messages() 
+    return messages

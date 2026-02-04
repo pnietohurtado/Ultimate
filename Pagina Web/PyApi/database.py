@@ -28,13 +28,16 @@ async def get_one_message(id: int):
     return None
 
 async def get_all_messages():
-    messages = []
-    cursor = collection.find({})
-    async for document in cursor:
-        # Asegurar que el documento tiene todos los campos requeridos
-        if 'name' in document and 'surname' in document and 'ticket' in document:
-            messages.append(Message(**document))
-    return messages
+    cursor = collection.find({"chatRoom": "pnh0002"}, 
+                             {"messages":1, "_id": 0})
+    documents = await cursor.to_list(length=None)
+
+    all_messages = []
+    for doc in documents: 
+        if "message" in doc: 
+            all_messages.extend(doc["messages"])
+
+    return all_messages
 
 async def send_message(message: dict):
     if '_id' not in message:
