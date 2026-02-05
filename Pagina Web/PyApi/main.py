@@ -21,9 +21,9 @@ async def welcome():
     return {'message': 'Hello!'}
 
 
-@app.get('/api/sendmessage/{who}/{message}')
-async def sendMessage(who: WhoIs, message:str): 
-    await add_message(who, message); 
+@app.post('/api/sendmessage/{chatRoom}/{message}')
+async def sendMessage(chatRoom: str, message:str): 
+    await add_message(WhoIs.USER, message); 
     return {'message': 'Everything send correctly'}
 
 
