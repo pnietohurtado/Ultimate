@@ -34,7 +34,7 @@ public class UserEntity implements UserDetails {
     private Role role;
 
     // Constructor de la clase
-    public UserEntity(){this.role = Role.USER;} // Muy importante tener un constructor vacío
+    public UserEntity(){} // Muy importante tener un constructor vacío
 
     // Getter y Setter
 
