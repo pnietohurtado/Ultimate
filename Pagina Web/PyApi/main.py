@@ -8,7 +8,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["http://127.0.0.1:5500", "http://localhost:5500", "http://localhost:8000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -23,7 +23,7 @@ async def welcome():
 
 @app.post('/api/sendmessage/{chatRoom}/{message}')
 async def sendMessage(chatRoom: str, message:str): 
-    await add_message(WhoIs.USER, message); 
+    await add_message(WhoIs.USER.value, message); 
     return {'message': 'Everything send correctly'}
 
 

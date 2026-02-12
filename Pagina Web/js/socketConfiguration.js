@@ -1,4 +1,4 @@
-export { createConversation } from "../js/MongoDBCode/mongo";
+// export { createConversation } from "../js/MongoDBCode/mongo";
 
 /* -------------- Socket Configuration --------------------*/
 class WebSocketChat {
@@ -7,10 +7,10 @@ class WebSocketChat {
         this.currentRoom = 'pnh0002';
         this.currentUser = usernameVariable;
         this.subscription = null;
-        
+
         // Guardar referencia al input de mensajes
         this.messageInput = null;
-        
+
         this.connectWebSocket();
     }
 
@@ -65,28 +65,28 @@ class WebSocketChat {
             try {
                 // Enviar mensaje por WebSocket
                 this.stompClient.send(`/app/chat/${this.currentRoom}`, {}, JSON.stringify(chatMessage));
-                
+
                 // Mostrar mensaje en la interfaz
                 this.displayMessage(chatMessage, true);
-                
+
                 // Guardar en base de datos
-                createConversation(this.currentRoom, chatMessage);
+                // createConversation(this.currentRoom, chatMessage);
 
                 // Enviar a la API
-                await fetch(`/api/sendmessage/${this.currentRoom}/${encodeURIComponent(chatMessage.message)}`, {
+                await fetch(`http://localhost:8000/api/sendmessage/${this.currentRoom}/${encodeURIComponent(chatMessage.message)}`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     }
                 })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => console.log('Message sent to API:', data))
-                .catch(error => console.error('API Error:', error));
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => console.log('Message sent to API:', data))
+                    .catch(error => console.error('API Error:', error));
 
             } catch (error) {
                 console.error('Error sending message:', error);
@@ -105,7 +105,7 @@ class WebSocketChat {
 
     displayMessage(message, isOwnMessage) {
         const messageContainer = document.getElementById('message-container');
-        
+
         if (!messageContainer) {
             console.error('Message container not found');
             return;
@@ -178,18 +178,18 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!nameUser) {
             nameUser = "UsuarioDefault";
         }
-        
+
         // Crear instancia del chat
         window.chatApp = new WebSocketChat(nameUser);
-        
+
         // Establecer referencia al input de mensajes
         const messageInput = document.getElementById('messageInput');
         if (messageInput && window.chatApp) {
             window.chatApp.setMessageInput(messageInput);
         }
-        
+
         console.log('Chat initialized for user:', nameUser);
-        
+
     } catch (error) {
         console.error('Error initializing chat:', error);
     }
